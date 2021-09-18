@@ -98,3 +98,7 @@ typings/
 
 # TernJS port file
 .tern-port
+
+# Webpack
+dist/main.js
+dist/bundle.js
