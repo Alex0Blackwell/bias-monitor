@@ -24,6 +24,15 @@ class UrlServiceABC {
   build_body(... args) {
     throw new NotImplementedError();
   }
+
+  /**
+   * Get the headers for a request.
+   * 
+   * @return 2d array of headers
+   */
+  get_headers() {
+    throw new NotImplementedError();
+  }
 }
 
 
@@ -33,11 +42,13 @@ class BiasUrlService extends UrlServiceABC {
   }
 
   build_body(api_key, text_to_analyze) {
-    const body = {
-      API: api_key,
-      Text: text_to_analyze,
-    }
-    return body;
+    return `API=${api_key}&Text=${text_to_analyze}`;
+  }
+
+  get_headers() {
+    return [
+      ['Content-type', 'application/x-www-form-urlencoded; charset=utf-8']
+    ]
   }
 }
 
