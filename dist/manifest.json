@@ -1,7 +1,11 @@
-{ "manifest_version": 2, 
-    "name": "Bias Monitor", 
+{   
+    "manifest_version": 3,
+    "name": "Bias Monitor",
     "version": "0.1.0", 
-    "permissions": ["<all_urls>"], 
-    "browser_action": 
-        { "default_popup": "index.html" } 
+    "permissions":["declarativeContent", "activeTab", "scripting", "tabs"],
+    "background": {
+        "service_worker": "background.js"
+    },
+    "action": { "default_popup": "index.html" },
+    "host_permissions":["*://*/"] 
 }
