@@ -102,3 +102,4 @@ typings/
 # Webpack
 dist/main.js
 dist/bundle.js
+config.js
