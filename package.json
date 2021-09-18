@@ -5,14 +5,15 @@
   "main": "index.js",
   "dependencies": {
     "axios": "^0.21.4",
+    "dotenv": "^10.0.0",
     "webpack": "^5.53.0",
     "webpack-cli": "^4.8.0"
   },
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack",
-    "watch": "webpack --watch"
+    "build": "make build",
+    "watch": "make watch"
   },
   "repository": {
     "type": "git",
