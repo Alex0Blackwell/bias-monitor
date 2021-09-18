@@ -7,6 +7,16 @@ const handleButtonClick = async event => {
     event.preventDefault();
     const text = document.getElementById('text');
 
+    chrome.tabs.getSelected(null, function(tab) {
+        chrome.tabs.sendRequest(tab.id, {method: "page_txt"}, function(response) {
+            if(response.method=="page_txt"){
+                alltext = response.data;
+            }
+        });
+    });
+    console.log("hi")
+    console.log(alltext)
+
     const text_to_analyze = `The Liberal leader first raised the prospect of electoral reform in 2015 by promising that the federal election held that year would be the last to use the first-past-the-post method a pledge he would ultimately`;
     const bias_url_service = new UrlServices.BiasUrlService();
     const url_endpoint = bias_url_service.build_url(config.api_url);
