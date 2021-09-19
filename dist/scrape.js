@@ -1,1 +1,1 @@
-chrome.storage.local.get({url_history:[]},(function(o){var r=o.url_history;r.push(window.location.toString()),chrome.storage.local.set({url_history:r}),console.log(r)}));
+chrome.storage.local.get({url_history:{}},(function(o){var t=o.url_history;t.hasOwnProperty(window.location.toString())||(t[window.location.toString()]=Math.floor(10*Math.random())),chrome.storage.local.set({url_history:t});var r=0;for(const[o,e]of Object.entries(t))r+=e;console.log(t);var e=r/Object.keys(t).length;console.log(e)}));
