@@ -30,12 +30,14 @@ if (content.split(" ").length > 5) {
         chrome.storage.sync.get({url_history: {}}, function (result) {
             // An object being used as a hash
             var history = result.url_history;
-       
+            
+            console.log(response);
+
             // Checking if the hash does not contain the url
             if (!history.hasOwnProperty(window.location.toString())) {
                 // Add url and bias result to hash
-                // Should change value to "response" variable
-                history[window.location.toString()] = Math.floor((Math.random() * 84) - 42);
+                // history[window.location.toString()] = Math.floor((Math.random() * 84) - 42);
+                history[window.location.toString()] = response;
             }
            
             // Iterating through all hash keys and totaling the bias results
@@ -47,14 +49,9 @@ if (content.split(" ").length > 5) {
             // Average of all bias results
             var average = total / Object.keys(history).length;
 
-            console.log(history);
-            console.log(response);
-            console.log(average);
-            console.log("=========================");
-
             chrome.storage.sync.set({url_history: history});
-            // Should change value to history[window.location.toString()]
-            chrome.storage.sync.set({activeScore: response});
+            // chrome.storage.sync.set({activeScore: response});
+            chrome.storage.sync.set({activeScore: history[window.location.toString()]});
             chrome.storage.sync.set({averageScore: average});
         });
     })()
