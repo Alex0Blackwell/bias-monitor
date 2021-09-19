@@ -5,6 +5,7 @@ module.exports = {
     main: './src/index.js',
     background: './src/background.js',
     scrape: './src/scrape.js',
+    domHelpers: './src/dom-helpers.js',
   },
   output: {
       path: path.resolve(__dirname, 'dist'),

@@ -33,3 +33,10 @@ chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
         }
     }
 });
+
+chrome.action.onClicked.addListener(async (tab) => {
+    await chrome.scripting.executeScript({
+        target: { tabId: tab.id },
+        files: ["./scrape.js"]
+    });
+});
