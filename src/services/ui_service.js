@@ -27,7 +27,7 @@ export default class UiService {
       political_lean = Math.sign(normalized_num) == 1 ? "right" : "left";
     return political_lean;
   }
-
+  
   static update_ui(normalized_number, political_lean) {
     const lean_status = document.getElementById("lean-status");
     const main_text = document.getElementById("main-text");
