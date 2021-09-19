@@ -34,7 +34,8 @@ if (content.split(" ").length > 5) {
             // Checking if the hash does not contain the url
             if (!history.hasOwnProperty(window.location.toString())) {
                 // Add url and bias result to hash
-                history[window.location.toString()] = Math.floor(Math.random() * 10);
+                // Should change value to "response" variable
+                history[window.location.toString()] = Math.floor((Math.random() * 84) - 42);
             }
            
             // Iterating through all hash keys and totaling the bias results
@@ -52,6 +53,7 @@ if (content.split(" ").length > 5) {
             console.log("=========================");
 
             chrome.storage.sync.set({url_history: history});
+            // Should change value to history[window.location.toString()]
             chrome.storage.sync.set({activeScore: response});
             chrome.storage.sync.set({averageScore: average});
         });
