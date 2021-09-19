@@ -2,7 +2,7 @@
     "manifest_version": 3,
     "name": "Bias Monitor",
     "version": "0.1.0", 
-    "permissions":["declarativeContent", "activeTab", "scripting", "tabs"],
+    "permissions":["declarativeContent", "activeTab", "scripting", "tabs", "storage"],
     "background": {
         "service_worker": "background.js"
     },
