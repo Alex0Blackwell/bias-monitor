@@ -1,12 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title>Bias Monitor</title>
-        <link rel="stylesheet" href="./styles.css"/>
-    </head>
-    <body>
-        <h1 id="text">Bias Monitor</h1>
-        <button id="button">Click</button>
-        <script src="./main.js"></script>
-    </body>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap 4 -->
+    <link 
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    >
+    <link rel="stylesheet" href="./css/styles.css"/>
+    <title>Bias Monitor</title>
+</head>
+<body>
+    <div class="text-center section">
+        <h3>Bias Monitor</h3>
+        <span id="status-dot" class="dot left-dot"></span>
+        <h5 id="lean-status" class="inline">Very Left</h5>,
+        <p id="bias-num" class="inline bold"></p>
+        <p id="out-of-num" class="inline">/5</p>
+    </div>
+        <img class="person-image" id="left-person-image" src="./imgs/left_wing_person.png" alt="">
+        <img class="person-image " id="center-person-image" src="./imgs/center_person.png" alt="">
+        <img class="person-image " id="right-person-image" src="./imgs/right_wing_person.png" alt="">
+    <p id="main-text">
+        We have analyzed this text to be very left wing. Consider getting another
+        perspective by visiting a conflicting take on this article!
+    </p>
+    <div class="text-center">
+        <p class="inline">Diverse Reading Score:</p>
+        <p id="diverse-score" class="inline bold">150</p>
+    </div>
+</body>
+<script src="./main.js"></script>
 </html>

@@ -1,0 +1,84 @@
+@font-face{font-family:uppercaseFont;src:url('./fonts/uppercase.ttf')}
+
+body {
+  width: 250px;
+  height: 350px;
+  padding: 5px;
+}
+
+h3 {
+  font-family: uppercaseFont, sans-serif;
+  font-size: 45px;
+}
+
+p {
+  color: #555555;
+}
+
+.section {
+  padding: 20px 0;
+}
+
+.dot {
+  height: 15px;
+  width: 15px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.left-dot {
+  background-color: #2B44FF;
+}
+
+.right-dot {
+  background-color: #FF4343;
+}
+
+.center-dot {
+  background-color: #C5BDB3;
+  /*  or ADA49D */
+}
+
+.person-image {
+  display: none;
+  width: 100px;
+  /* position: absolute; */
+  bottom: 25px;
+}
+
+.viewable {
+  display: block;
+}
+
+.inline {
+  display: inline;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+#out-of-num{
+  position: relative;
+  color:#7b7b7b;
+  font-size: 12px;
+  bottom: 5px;
+  left: -3px;
+}
+
+#left-person-image {
+  left: 15px;
+  float: left;
+}
+
+#center-person-image {
+  padding-top: 75px;
+  left: 65px;
+  float: left;
+}
+
+#right-person-image {
+  padding-top: 10px;
+  right: 10px;
+  float: right;
+}
