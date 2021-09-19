@@ -1,5 +1,7 @@
 import UiService from "./services/ui_service";
 
+const absoluteMaxScore = 42;
+
 async function on_start() {
 
     await chrome.storage.sync.get(['activeScore', 'averageScore'], async function (result) {
@@ -12,6 +14,10 @@ async function on_start() {
         }
 
         if (result.averageScore) {
+            // Calculating the diversity score
+            var average = result.averageScore;
+            var difference;
+
             console.log("average score: " + result.averageScore);
         }
     });
