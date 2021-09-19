@@ -28,10 +28,11 @@ export default class UiService {
     return political_lean;
   }
   
-  static update_ui(normalized_number, political_lean) {
+  static update_ui(normalized_number, political_lean, diversity_score) {
     const lean_status = document.getElementById("lean-status");
     const main_text = document.getElementById("main-text");
     const bias_num = document.getElementById("bias-num");
+    const diverse_num = document.getElementById("diverse-score");
 
     const num_to_ui_dict = {
       0: "",
@@ -52,6 +53,7 @@ export default class UiService {
     lean_status.innerHTML = `${adjective} ${political_lean}`;
     main_text.innerHTML = text;
     bias_num.innerHTML = abs_normalized_num;
+    diverse_num.innerHTML = diversity_score;
 
     this._update_image(political_lean);
     this._update_dot(political_lean);
