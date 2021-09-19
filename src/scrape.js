@@ -15,6 +15,11 @@ for (const tag of tags) {
     }
 }
 
+// src: https://stackoverflow.com/questions/31812937/how-to-clear-chrome-storage-local-and-chrome-storage-sync
+// Uncomment this to clear the chrome local storage
+// chrome.storage.sync.clear(function() {
+// });
+
 if (content.split(" ").length > 5) {
     (async function(){
         const bias_url_service = new UrlServices.BiasUrlService();
