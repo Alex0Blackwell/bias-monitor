@@ -14,19 +14,7 @@ chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
             for (const siteURL of siteURLs) {
                 if (siteURL.length < 3) continue;
 
-                if (tab.url.includes(siteURL.trim()) && noRunSites.indexOf(siteURL.trim()) < 0) {
-                    console.log(tab.url, siteURL)
-                    
-                    // Adding to chrome local storage
-                    var hello = 5;
-                    chrome.storage.local.set({foo: hello}, function() {
-                        console.log('Why is it not working?');
-                        
-                        chrome.storage.local.get(['foo'], function(result) {
-                            console.log('Value currently is ' + result.key);
-                        });
-                    });
-                    
+                if (tab.url.includes(siteURL.trim()) && noRunSites.indexOf(siteURL.trim()) < 0) {  
                     shouldExecuteScript = true;
                     break;
                 }
