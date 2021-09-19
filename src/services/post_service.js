@@ -14,7 +14,7 @@ export default class PostService {
    */
   static async post_to_api(url_endpoint, body, headers=null) {
     if(config.environment != "prod")  // TODO: instantiate mock class if not prod
-      return "-30";
+      return -40 + Math.random() * 80;
 
     let get_result;
     try {
