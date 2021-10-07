@@ -7,16 +7,16 @@ async function on_start() {
 
     await chrome.storage.sync.get(['activeScore', 'averageScore'], async function (result) {
 
-        await chrome.tabs.query({active: true, currentWindow: true}, async function(tabs) {
+        // await chrome.tabs.query({active: true, currentWindow: true}, async function(tabs) {
 
-            var activeTab = tabs[0];
-            var activeTabId = activeTab.id;
+        //     var activeTab = tabs[0];
+        //     var activeTabId = activeTab.id;
        
-            await chrome.scripting.executeScript({
-                target: { tabId: activeTabId },
-                files: ["./scrape.js"]
-            });
-        });
+        //     await chrome.scripting.executeScript({
+        //         target: { tabId: activeTabId },
+        //         files: ["./scrape.js"]
+        //     });
+        // });
 
         if (result.activeScore) {
             const normalized_number = UiService.normalize_number(result.activeScore);
