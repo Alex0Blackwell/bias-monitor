@@ -2,60 +2,94 @@ import PostService from "./services/post_service";
 import UrlServices from "./services/url_service";
 import config from "../config";
 
-const tags = ['h1'];
 
-let content = "";
-
-for (const tag of tags) {
-    const elementArr = document.getElementsByTagName(tag);
-
-    for (const element of elementArr) {
-        content += element.textContent
-        content += " " 
-    }
+async function main() {
+    const page_content = get_page_content();
+    await update_and_display(page_content);
 }
 
-// src: https://stackoverflow.com/questions/31812937/how-to-clear-chrome-storage-local-and-chrome-storage-sync
-// Uncomment this to clear the chrome local storage
-// chrome.storage.sync.clear(function() {
-// });
 
-if (content.split(" ").length > 5) {
-    (async function(){
+function get_page_content() {
+    const considered_tags = ["h1", "h2", "h3"];
+    let content = "";
+
+    for (const tag of considered_tags) {
+        const element_arr = document.getElementsByTagName(tag);
+        for (const element of element_arr) {
+            content += element.textContent
+            content += " " 
+        }
+    }
+
+    return content;
+}
+
+
+async function update_and_display(page_content) {
+    const website_url = window.location.toString();
+    let current_bias_score = 0;
+
+    const has_cached_rating = await _has_cached_rating(website_url);
+    if(!has_cached_rating) {
+        current_bias_score = await _get_rating_from_api(page_content);
+    }
+    await _update_local_storage(website_url, current_bias_score);
+}
+
+
+function _has_cached_rating(website_url) {
+    return new Promise(function(resolve, reject) {
+        chrome.storage.sync.get({url_history: {}}, function(result) {
+            const history = result.url_history;
+            const has_cached_rating  = history.hasOwnProperty(website_url)
+            resolve(has_cached_rating);
+        });
+    });
+}
+
+
+async function _get_rating_from_api(page_content) {
+    const content_len_threshold = 5;
+    let current_bias_score;
+
+    if(page_content.length < content_len_threshold) 
+        current_bias_score = 0;
+    else {
         const bias_url_service = new UrlServices.BiasUrlService();
         const url_endpoint = bias_url_service.build_url(config.api_url);
-        const body = bias_url_service.build_body(config.api_key, content);
+        const body = bias_url_service.build_body(config.api_key, page_content);
         const headers = bias_url_service.get_headers();
-        const response = await PostService.post_to_api(url_endpoint, body, headers);
-        chrome.storage.sync.get({url_history: {}}, function (result) {
-            // An object being used as a hash
-            var history = result.url_history;
-       
-            // Checking if the hash does not contain the url
-            if (!history.hasOwnProperty(window.location.toString())) {
-                // Add url and bias result to hash
-                // Should change value to "response" variable
-                history[window.location.toString()] = Math.floor((Math.random() * 84) - 42);
-            }
-           
-            // Iterating through all hash keys and totaling the bias results
-            var total = 0;
-            for (const [key, value] of Object.entries(history)) {
-                total += value;
-            }
-            
-            // Average of all bias results
-            var average = total / Object.keys(history).length;
+        current_bias_score = await PostService.post_to_api(url_endpoint, body, headers);
+    }
 
-            console.log(history);
-            console.log(response);
-            console.log(average);
-            console.log("=========================");
-
-            chrome.storage.sync.set({url_history: history});
-            // Should change value to history[window.location.toString()]
-            chrome.storage.sync.set({activeScore: response});
-            chrome.storage.sync.set({averageScore: average});
-        });
-    })()
+    return current_bias_score;
 }
+
+
+function _update_local_storage(website_url, current_bias_score=undefined) {
+    return new Promise(function(resolve, reject) {
+        chrome.storage.sync.get({url_history: {}}, function(result) {
+            let history = result.url_history;
+
+            if(!current_bias_score)
+                current_bias_score = history[website_url];
+            else {
+                history[website_url] = current_bias_score;
+                chrome.storage.sync.set({url_history: history});
+            }
+
+            let total = 0;
+                for(const [_, value] of Object.entries(history)) {
+                    total += value;
+                }
+            const average = total / Object.keys(history).length;
+
+            chrome.storage.sync.set({activeScore: current_bias_score});
+            chrome.storage.sync.set({averageScore: average});
+            resolve();
+        });
+    });
+}
+
+
+main();
