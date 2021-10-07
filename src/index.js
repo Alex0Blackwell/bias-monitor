@@ -22,20 +22,24 @@ async function on_start() {
             console.log("bias score: " + result.activeScore);
             const normalized_number = UiService.normalize_number(result.activeScore);
             const political_lean = UiService.get_political_lean(normalized_number);
-            
-            // Calculating the diversity score
-            var average = result.averageScore;
-            var difference = absoluteMaxScore - Math.abs(average);
-            var diversityScore = maxDiversityScore * (1 - (difference/absoluteMaxScore));
 
-            console.log("diversity score: " + diversityScore);
-            
+            // Calculating the diversity score
+            const abs_current_score = Math.abs(result.activeScore);
+            console.log("a", abs_current_score)
+            const abs_average_score = Math.abs(result.averageScore);
+            console.log("avg", abs_average_score)
+            const this_website_difference = Math.abs(abs_current_score - abs_average_score);
+            console.log("this diff", this_website_difference)
+            const difference = Math.abs(absoluteMaxScore - this_website_difference);
+            console.log("diff", difference)
+            let diversityScore = maxDiversityScore * (1 - (difference/absoluteMaxScore));
+            diversityScore = Math.ceil(diversityScore/5)*5;
+
+
             UiService.update_ui(normalized_number, political_lean, diversityScore);
         }
     });
 }
-
-// on_start();
 
 window.onload = function() {
     on_start();
