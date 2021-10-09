@@ -1,5 +1,5 @@
 build: ;@echo "Building project."; \
-			  webpack;
+			  webpack --mode production;
 
 watch: ;@echo "Building project, hot reload is enabled."; \
-        webpack --watch;
+        webpack --watch --mode production;
