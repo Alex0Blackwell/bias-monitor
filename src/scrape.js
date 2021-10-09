@@ -76,16 +76,18 @@ function _update_local_storage(website_url, current_bias_score=undefined) {
             else {
                 history[website_url] = current_bias_score;
                 chrome.storage.sync.set({url_history: history});
+
+                let total = 0;
+                    for(const [_, value] of Object.entries(history)) {
+                        total += value;
+                    }
+                const average = total / Object.keys(history).length;
+
+                chrome.storage.sync.set({averageScore: average});
             }
 
-            let total = 0;
-                for(const [_, value] of Object.entries(history)) {
-                    total += value;
-                }
-            const average = total / Object.keys(history).length;
-
             chrome.storage.sync.set({activeScore: current_bias_score});
-            chrome.storage.sync.set({averageScore: average});
+            chrome.storage.sync.set({is_news_site: true});
             resolve();
         });
     });

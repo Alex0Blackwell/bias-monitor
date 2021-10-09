@@ -27,12 +27,24 @@ export default class UiService {
       political_lean = Math.sign(normalized_num) == 1 ? "right" : "left";
     return political_lean;
   }
+
+  static update_ui_no_data() {
+    const news_site_data = document.getElementById("news-site-data");
+    const not_news_site_data = document.getElementById("not-news-site-data");
+    news_site_data.style.display = "none";
+    not_news_site_data.style.display = "block";
+  }
   
   static update_ui(normalized_number, political_lean, diversity_score) {
     const lean_status = document.getElementById("lean-status");
     const main_text = document.getElementById("main-text");
     const bias_num = document.getElementById("bias-num");
     const diverse_num = document.getElementById("diverse-score");
+    const not_news_site_data = document.getElementById("not-news-site-data");
+    const news_site_data = document.getElementById("news-site-data");
+
+    news_site_data.style.display = "block";
+    not_news_site_data.style.display = "none";
 
     const num_to_ui_dict = {
       0: "",
@@ -42,13 +54,19 @@ export default class UiService {
       4: "Very",
       5: "Extreme",
     }
-    const abs_normalized_num = Math.abs(normalized_number);
-    console.log(abs_normalized_num)
+    const diversity_response_dict = {
+      0: "This is very similar to what you usually read, try to visit a conflicting view.",
+      1: "This is kind of what you're used to reading, try browsing more news websites to hear something new!",
+      2: "This is a little different from what you normally read, nice work!",
+      3: "This is quite different from your typical reading material, good job finding a new perspective!",
+      4: "This is drastically different from your typical news articles, excellent work finding new views!"
+    }
 
+    const abs_normalized_num = Math.abs(normalized_number);
+    const normalized_diversity_score = Math.round(diversity_score/20);
+    const diversity_response = diversity_response_dict[normalized_diversity_score];
     const adjective = num_to_ui_dict[abs_normalized_num];
-    const text = `We have analyzed this text to be ${adjective} ${political_lean}
-    wing. Consider getting another perspective by visiting a conflicting
-    take on this article! `
+    const text = `We have analyzed this text to be ${adjective.toLowerCase()} ${political_lean}. ${diversity_response}`;
 
     lean_status.innerHTML = `${adjective} ${political_lean}`;
     main_text.innerHTML = text;

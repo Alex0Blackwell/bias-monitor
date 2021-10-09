@@ -15,24 +15,44 @@
     <title>Bias Monitor</title>
 </head>
 <body>
-    <div class="text-center section">
-        <h3>Bias Monitor</h3>
-        <span id="status-dot" class="dot left-dot"></span>
-        <h5 id="lean-status" class="inline">Very Left</h5>,
-        <p id="bias-num" class="inline bold"></p>
-        <p id="out-of-num" class="inline">/5</p>
+    <div id="news-site-data">
+        <div class="text-center section">
+            <h3>Bias Monitor</h3>
+            <span id="status-dot" class="dot left-dot"></span>
+            <h5 id="lean-status" class="inline"></h5>,
+            <p id="bias-num" class="inline bold"></p>
+            <p id="out-of-num" class="inline">/5</p>
+        </div>
+            <img class="person-image" id="left-person-image" src="./imgs/left_wing_person.png" alt="">
+            <img class="person-image " id="center-person-image" src="./imgs/center_person.png" alt="">
+            <img class="person-image " id="right-person-image" src="./imgs/right_wing_person.png" alt="">
+        <p id="main-text"></p>
+        <div class="text-center">
+            <p class="inline">Diverse Reading Score:</p>
+            <p id="diverse-score" class="inline bold">0</p>
+            <p id="out-of-num" class="inline">/100</p>
+        </div>
+        <div class="tiny-font pad-bottom-small">
+            <svg class="inline" xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
+                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+            </svg>
+            <p class="inline">A high score means this is a new perspective</p>
+        </div>
     </div>
-        <img class="person-image" id="left-person-image" src="./imgs/left_wing_person.png" alt="">
-        <img class="person-image " id="center-person-image" src="./imgs/center_person.png" alt="">
-        <img class="person-image " id="right-person-image" src="./imgs/right_wing_person.png" alt="">
-    <p id="main-text">
-        We have analyzed this text to be very left wing. Consider getting another
-        perspective by visiting a conflicting take on this article!
-    </p>
-    <div class="text-center">
-        <p class="inline">Diverse Reading Score:</p>
-        <p id="diverse-score" class="inline bold">0</p>
-        <p id="out-of-num" class="inline">/100</p>
+    <div id="not-news-site-data">
+        <div class="text-center section">
+            <h3>Bias Monitor</h3>
+            <span id="status-dot" class="dot center-dot"></span>
+            <h5 class="inline" >This site is not political</h5>
+        </div>
+        <img class="non-news-person-image " id="" src="./imgs/non_news_neutral.png" alt="">
+        <p id="main-text">
+            This website isn't centred around reporting news.
+            To get a bias reading, visit a news-focused site, like
+            <i>Fox News</i>, or the
+            <i>New York Times</i>.
+        </p>
     </div>
 </body>
 <script src="./main.js"></script>
