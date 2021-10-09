@@ -2,6 +2,14 @@
     "manifest_version": 3,
     "name": "Bias Monitor",
     "version": "0.1.0", 
+    
+    "description": "Gain insight on the political bias of a news article.",
+    "icons": {
+        "16": "./imgs/16.png",
+        "48": "./imgs/48.png",
+        "128": "./imgs/128.png"
+    },
+
     "permissions": [
         "declarativeContent",
         "activeTab",
@@ -13,6 +21,12 @@
         "service_worker": "background.js"
     },
     "action": {
+        "default_icon": {
+            "16": "./imgs/16.png",
+            "24": "./imgs/24.png",
+            "32": "./imgs/32.png"
+        },
+        "default_title": "Check this site's bias",
         "default_popup": "index.html"
     },
     "host_permissions":[

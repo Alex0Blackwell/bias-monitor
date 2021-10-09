@@ -1,4 +1,7 @@
-@font-face{font-family:uppercaseFont;src:url('./fonts/uppercase.ttf')}
+@font-face{
+  font-family: uppercaseFont;
+  src:url('./fonts/uppercase.ttf')
+}
 
 body {
   width: 250px;
@@ -17,6 +20,10 @@ p {
 
 .section {
   padding: 20px 0;
+}
+
+.pad-bottom-small {
+  padding-bottom: 5px;
 }
 
 .dot {
@@ -64,8 +71,12 @@ p {
   font-weight: bold;
 }
 
+.tiny-font {
+  font-size: 11.2px;
+}
+
 #main-text {
-  height: 175px;
+  height: 195px;
 }
 
 #lean-status {
