@@ -1,43 +1,41 @@
-const noRunSites = ['google.com'];
+chrome.tabs.onActivated.addListener(async (activeInfo) => {
+    chrome.tabs.query({
+    active: true,
+    lastFocusedWindow: true
+    }, async function(tabs) {
+        const tab_id = activeInfo.tabId;
+        const tab = tabs[0];
+        let is_news_site = false;
 
-chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
+        const response = await fetch('newsites.txt');
+        const text = await response.text();
+        const siteURLs = text.split('\n');
 
-    if (changeInfo.status === 'complete') {
-        try {
-            let is_news_site = false;
-
-            const response = await fetch('newsites.txt');
-            const text = await response.text();
-            
-            const siteURLs = text.split('\n');
-
-            for (const siteURL of siteURLs) {
-                if (siteURL.length < 3) continue;
-
-                if (tab.url.includes(siteURL.trim()) && noRunSites.indexOf(siteURL.trim()) < 0) {  
-                    is_news_site = true;
-                    break;
-                }
+        const num_of_sites = siteURLs.length;
+        let i = 0;
+        while(!is_news_site && i < num_of_sites) {
+            if (tab.url.includes(siteURLs[i++].trim())) {  
+                is_news_site = true;
             }
+        }
 
+        try {
             if (is_news_site) {
                 console.log("is news")
                 await chrome.scripting.executeScript({
-                    target: { tabId: tabId },
+                    target: { tabId: tab_id },
                     files: ["./scrape.js"]
                 });
             } 
             else {
                 console.log("is not news")
                 await chrome.scripting.executeScript({
-                    target: { tabId: tabId },
+                    target: { tabId: tab_id },
                     files: ["./not_news_event.js"]
                 });
             }
-            console.log("done")
-        } catch (e) {
-            console.log(e)
+        } catch (error) {
+            console.log(error)
         }
-    }
+    });
 });
-

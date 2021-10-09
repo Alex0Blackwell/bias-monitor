@@ -29,9 +29,10 @@ export default class UiService {
   }
 
   static update_ui_no_data() {
-    const not_news = document.getElementById("not-news");
-    not_news.style.display = "block";
-    console.log("Its not news lol")
+    const news_site_data = document.getElementById("news-site-data");
+    const not_news_site_data = document.getElementById("not-news-site-data");
+    news_site_data.style.display = "none";
+    not_news_site_data.style.display = "block";
   }
   
   static update_ui(normalized_number, political_lean, diversity_score) {
@@ -39,6 +40,11 @@ export default class UiService {
     const main_text = document.getElementById("main-text");
     const bias_num = document.getElementById("bias-num");
     const diverse_num = document.getElementById("diverse-score");
+    const not_news_site_data = document.getElementById("not-news-site-data");
+    const news_site_data = document.getElementById("news-site-data");
+
+    news_site_data.style.display = "block";
+    not_news_site_data.style.display = "none";
 
     const num_to_ui_dict = {
       0: "",
