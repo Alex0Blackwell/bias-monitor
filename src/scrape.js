@@ -10,7 +10,7 @@ async function main() {
 
 
 function get_page_content() {
-    const considered_tags = ["h1", "h2", "h3"];
+    const considered_tags = ["h1"];
     let content = "";
 
     for (const tag of considered_tags) {
@@ -20,6 +20,11 @@ function get_page_content() {
             content += " " 
         }
     }
+    const sample_size = 400;
+    const body_text = document.body.innerText;
+    const start_sample = parseInt(body_text.length/10);
+    let body_text_sample = body_text.slice(start_sample, start_sample+sample_size);
+    content += body_text_sample;
 
     return content;
 }
