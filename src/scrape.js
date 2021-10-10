@@ -27,7 +27,7 @@ function get_page_content() {
 
 async function update_and_display(page_content) {
     const website_url = window.location.toString();
-    let current_bias_score = 0;
+    let current_bias_score;
 
     const has_cached_rating = await _has_cached_rating(website_url);
     if(!has_cached_rating) {
@@ -71,7 +71,7 @@ function _update_local_storage(website_url, current_bias_score=undefined) {
         chrome.storage.sync.get({url_history: {}}, function(result) {
             let history = result.url_history;
 
-            if(!current_bias_score)
+            if(current_bias_score == undefined)
                 current_bias_score = history[website_url];
             else {
                 history[website_url] = current_bias_score;

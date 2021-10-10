@@ -19,10 +19,9 @@ export default class PostService {
     let get_result;
     try {
       const response = await this._post(url_endpoint, body, headers);
-      get_result = response;
+      get_result = this._apply_cusp_transformation(response);
     } catch(error) {
-      get_result = "Error posting data";
-      console.error(`${get_result}: ${error}`);
+      console.error("Error posting data", error);
     }
     return get_result;
   }
@@ -65,5 +64,27 @@ export default class PostService {
 
       xhr.send(body);
     });
+  }
+
+
+  /**
+   * The responses we get back are mostly in the [-2, 2]
+   * range because we don't send over large requests
+   * with lots of text data. This applies a cusp
+   * transformation to amplify some of the small numbers.
+   * 
+   * @param {*} result 
+   * @returns a float after a cusp transformation
+   */
+  static _apply_cusp_transformation(result) {
+    const result_float = parseFloat(result);
+    const is_negative = result < 0 ? true : false;
+    const abs_result_float = Math.abs(result_float);
+
+    const squash = 5.7;
+    const vertical_shift = 5;
+    const transformed_val = squash*Math.pow(abs_result_float, 1/2) + vertical_shift;
+
+    return is_negative ? -1*transformed_val : transformed_val; 
   }
 }

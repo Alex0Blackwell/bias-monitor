@@ -8,7 +8,9 @@
 async function kick_off_scripts(tab_id, tab) {
     let files_to_execute, base_url;
     let is_news_site = false;
+    let t0, t1;
 
+    t0 = new Date().getTime();
     try {
         const url_info = new URL(tab.url)
         base_url = url_info.hostname.replace("www.", "");
@@ -24,10 +26,10 @@ async function kick_off_scripts(tab_id, tab) {
         is_news_site = true;
     }
     if(is_news_site) {
-        console.debug(base_url, "is a news website");
+        console.debug(tab.url, "is a news website.");
         files_to_execute = ["./scrape.js"];
     } else {
-        console.debug(base_url, "is not a news website");
+        console.debug(base_url, "is not a news website.");
         files_to_execute = ["./not_news_event.js"];
     }
     try {
@@ -38,6 +40,9 @@ async function kick_off_scripts(tab_id, tab) {
     } catch(error) {
         console.log(error)
     }
+    t1 = new Date().getTime();
+    const time_to_analyze = (t1 - t0)/1000;
+    console.debug("Done analyzing, took ", time_to_analyze, "seconds.");
 }
 
 
