@@ -38,7 +38,7 @@ viewing news sources of a conflicting perspective.
 To contribute to this project, create a pull request against the
 `main` branch. One of the owners of the project will review the
 request and determine if it may be merged. See the
-[CONTRIBUTING.md] file for further reading.
+[CONTRIBUTING.md](CONTRIBUTING.md) file for further reading.
 
 ### Environment Set Up
 Download the repo and follow the
