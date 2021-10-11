@@ -1,6 +1,6 @@
 # Bias Monitor Chrome Extension
 <p align="center">
-    <a href="https://github.com/Alex0Blackwell/bias-monitor">
+    <a href="https://chrome.google.com/webstore/detail/bias-monitor/njlgkckpfjeknfkdideknnbniehihkli">
         <img src="./dist/imgs/128.png" width="50px">
     </a>
 </p>
@@ -11,9 +11,14 @@
   <a href="#developer-guide">Developer Guide</a>
   &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#artificial-intelligence">Artificial Intelligence</a>
+  &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#license-and-credit">License and Credit</a>
 </p>
 
 ## Overview
+Try the extension for yourself,
+[available on the Chrome Web Store](https://chrome.google.com/webstore/detail/bias-monitor/njlgkckpfjeknfkdideknnbniehihkli)!  
+
 *Bias Monitor* is a Chrome extension that detects the political bias
 of news articles. Using Natural Language Processing (NLP) a machine
 learning algorithm analyzes the context of the website content. The
@@ -25,7 +30,11 @@ what your own political bias is. Bias Monitor learns about the
 type of political content you are used to seeing and encourages
 viewing news sources of a conflicting perspective.
 
-## Example
+Please leave any complaints or suggestions in the Github
+[Issues](https://github.com/Alex0Blackwell/bias-monitor/issues)
+tab.
+
+## Examples
 <p align="center">
   <img src="./pictures/left_example.png" width="175px" />
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -105,9 +114,11 @@ results of all the ML models considered.
 ReBERTa achieved the best Margin Absolute Error (MAE) of
 6.04.
 
-### Further Reading and Credit
+## License and Credit
 Thanks to the
 [wonderful report](https://www.thebipartisanpress.com/politics/calculating-political-bias-and-fighting-partisanship-with-ai/)
 by [The Bipartisan Press](https://www.thebipartisanpress.com/)
 and for providing an API endpoint for our Chrome extension
-project *Bias Monitor*.
+project *Bias Monitor*.  
+
+Licensed under the [MIT License](LICENSE).
