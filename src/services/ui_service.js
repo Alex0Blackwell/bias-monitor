@@ -55,9 +55,9 @@ export default class UiService {
       5: "Extreme",
     }
     const diversity_response_dict = {
-      0: "This is very similar to what you usually read, try to visit a conflicting view.",
-      1: "This is kind of what you're used to reading, try browsing more news websites to hear something new!",
-      2: "This is a little different from what you normally read, nice work!",
+      0: "This is very similar to what you usually read, try to visit a conflicting view next time!",
+      1: "This is kind of what you're used to reading, try browsing other websites to hear something new!",
+      2: "This is a little different from what you normally read, nice work and keep searching!",
       3: "This is quite different from your typical reading material, good job finding a new perspective!",
       4: "This is drastically different from your typical news articles, excellent work finding new views!"
     }
