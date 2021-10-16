@@ -59,12 +59,14 @@ export default class UiService {
       1: "This is kind of what you're used to reading, try browsing other websites to hear something new!",
       2: "This is a little different from what you normally read, nice work and keep searching!",
       3: "This is quite different from your typical reading material, good job finding a new perspective!",
-      4: "This is drastically different from your typical news articles, excellent work finding new views!"
+      4: "This is very different from what news articles you normally read, great work finding this page!",
+      5: "This is drastically different from your typical news articles, excellent work finding new views!"
     }
 
-    const abs_normalized_num = Math.abs(normalized_number);
     const normalized_diversity_score = Math.round(diversity_score/20);
     const diversity_response = diversity_response_dict[normalized_diversity_score];
+
+    const abs_normalized_num = Math.abs(normalized_number);
     const adjective = num_to_ui_dict[abs_normalized_num];
     const text = `We have analyzed this text to be ${adjective.toLowerCase()} ${political_lean}. ${diversity_response}`;
 

@@ -16,6 +16,7 @@ async function on_start() {
                 const abs_change = Math.abs((abs_max_score + page_score) - (abs_max_score + avg_score));
 
                 let diversity_score = max_diversiry_score * (abs_change/(abs_max_score*2));
+                diversity_score = _sigmoid_transformation(diversity_score)
                 diversity_score = Math.ceil(diversity_score/5)*5;
 
                 UiService.update_ui(normalized_number, political_lean, diversity_score);
@@ -24,6 +25,10 @@ async function on_start() {
             }
         }
     );
+}
+
+function _sigmoid_transformation(diversity_score) {
+    return 100/(1+Math.exp(4 - 0.16*diversity_score))
 }
 
 window.onload = function() {
