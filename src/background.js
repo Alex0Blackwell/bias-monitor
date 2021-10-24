@@ -12,14 +12,7 @@ async function kick_off_scripts(tab_id, tab) {
 
     t0 = new Date().getTime();
     try {
-        const url_info = new URL(tab.url)
-        base_url = url_info.hostname.replace("www.", "");
-
-        const news_urls_response = await fetch('news_sites.csv');
-        const news_urls_text = await news_urls_response.text();
-        const all_news_urls = new Set(news_urls_text.split('\n'));
-
-        is_news_site = all_news_urls.has(base_url);
+        is_news_site = _is_news_site(tab);
     } catch (error) {
         // Err on the side of analyzing the text
         console.debug("There was an error parsing the tab url", error);
@@ -38,11 +31,39 @@ async function kick_off_scripts(tab_id, tab) {
             files: files_to_execute,
         });
     } catch(error) {
-        console.log(error)
+        console.error(error)
     }
     t1 = new Date().getTime();
     const time_to_analyze = (t1 - t0)/1000;
     console.debug("Done analyzing, took ", time_to_analyze, "seconds.");
+}
+
+
+async function _is_news_site(tab) {
+    let is_news_site = false;
+
+    const url_info = new URL(tab.url)
+    base_url = url_info.hostname.replace("www.", "");
+
+    let news_words = await fetch("news_words.csv");
+    news_words = await news_words.text();
+    const all_news_words = news_words.split('\n');
+
+    const news_words_len = all_news_words.length;
+    const base_url_lowercase = base_url.toLowerCase();
+    let i = 0;
+    while(i < news_words_len && !is_news_site) {
+        if(base_url_lowercase.includes(all_news_words[i++]))
+            is_news_site = true;
+    }
+
+    if(!is_news_site) {
+        const news_urls_response = await fetch("news_sites.csv");
+        const news_urls_text = await news_urls_response.text();
+        const all_news_urls = new Set(news_urls_text.split('\n'));
+
+        is_news_site = all_news_urls.has(base_url);
+    }
 }
 
 
