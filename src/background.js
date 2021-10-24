@@ -31,7 +31,7 @@ async function kick_off_scripts(tab_id, tab) {
             files: files_to_execute,
         });
     } catch(error) {
-        console.error(error)
+        console.debug(error)
     }
     t1 = new Date().getTime();
     const time_to_analyze = (t1 - t0)/1000;
