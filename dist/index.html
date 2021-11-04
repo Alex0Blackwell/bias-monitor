@@ -15,17 +15,24 @@
     <title>Bias Monitor</title>
 </head>
 <body>
-    <div id="news-site-data">
-        <div class="text-center section">
-            <h3>Bias Monitor</h3>
+    <div class="text-center section">
+        <h3>Bias Monitor</h3>
+        <div id="bias-rating" class="loaded-results">
             <span id="status-dot" class="dot left-dot"></span>
             <h5 id="lean-status" class="inline"></h5>,
             <p id="bias-num" class="inline bold"></p>
             <p id="out-of-num" class="inline">/5</p>
         </div>
-            <img class="person-image" id="left-person-image" src="./imgs/left_wing_person.png" alt="">
-            <img class="person-image " id="center-person-image" src="./imgs/center_person.png" alt="">
-            <img class="person-image " id="right-person-image" src="./imgs/right_wing_person.png" alt="">
+    </div>
+    <div id="results-loading" class="text-center">
+        <h5>Just a Second...</h5>
+        <p>We are analysing the political bias of this text.</p>
+        <img class="loading-icon" src="./imgs/loading.gif" alt="">
+    </div>
+    <div id="bias-results" class="loaded-results">
+        <img class="person-image" id="left-person-image" src="./imgs/left_wing_person.png" alt="">
+        <img class="person-image " id="center-person-image" src="./imgs/center_person.png" alt="">
+        <img class="person-image " id="right-person-image" src="./imgs/right_wing_person.png" alt="">
         <p id="main-text"></p>
         <div class="text-center diverse-reading-score">
             <p class="inline">Diverse Reading Score:</p>
@@ -39,20 +46,6 @@
             </svg>
             <p class="inline">A high score means this is a new perspective</p>
         </div>
-    </div>
-    <div id="not-news-site-data">
-        <div class="text-center section">
-            <h3>Bias Monitor</h3>
-            <span id="status-dot" class="dot center-dot"></span>
-            <h5 class="inline" >This site is not political</h5>
-        </div>
-        <img class="non-news-person-image " id="" src="./imgs/non_news_neutral.png" alt="">
-        <p id="main-text">
-            This website isn't centred around reporting news.
-            To get a bias reading, visit a news-focused site, like
-            <i>Fox News</i>, or the
-            <i>New York Times</i>.
-        </p>
     </div>
 </body>
 <script src="./main.js"></script>

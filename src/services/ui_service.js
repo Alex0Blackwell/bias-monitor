@@ -28,23 +28,14 @@ export default class UiService {
     return political_lean;
   }
 
-  static update_ui_no_data() {
-    const news_site_data = document.getElementById("news-site-data");
-    const not_news_site_data = document.getElementById("not-news-site-data");
-    news_site_data.style.display = "none";
-    not_news_site_data.style.display = "block";
-  }
-  
   static update_ui(normalized_number, political_lean, diversity_score) {
     const lean_status = document.getElementById("lean-status");
     const main_text = document.getElementById("main-text");
     const bias_num = document.getElementById("bias-num");
     const diverse_num = document.getElementById("diverse-score");
-    const not_news_site_data = document.getElementById("not-news-site-data");
-    const news_site_data = document.getElementById("news-site-data");
-
-    news_site_data.style.display = "block";
-    not_news_site_data.style.display = "none";
+    const loading_page = document.getElementById("results-loading");
+    const bias_rating = document.getElementById("bias-rating");
+    const bias_results = document.getElementById("bias-results");
 
     const num_to_ui_dict = {
       0: "",
@@ -59,8 +50,8 @@ export default class UiService {
       1: "This is kind of what you're used to reading, try browsing other websites to hear something new!",
       2: "This is a little different from what you normally read, nice work and keep searching!",
       3: "This is quite different from your typical reading material, good job finding a new perspective!",
-      4: "This is very different from what news articles you normally read, great work finding this page!",
-      5: "This is drastically different from your typical news articles, excellent work finding new views!"
+      4: "This is very different from what articles you normally read, great work finding this page!",
+      5: "This is drastically different from your typical articles, excellent work finding new views!"
     }
 
     const normalized_diversity_score = Math.round(diversity_score/20);
@@ -77,6 +68,10 @@ export default class UiService {
 
     this._update_image(political_lean);
     this._update_dot(political_lean);
+
+    bias_rating.style.display = "block";
+    bias_results.style.display = "block";
+    loading_page.style.display = "none";
   }
 
   static _update_image(political_lean) {
