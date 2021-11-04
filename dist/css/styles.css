@@ -45,14 +45,6 @@ p {
   background-color: #C5BDB3;
 }
 
-.non-news-person-image {
-  float: left;
-  width: 100px;
-  bottom: 25px;
-  margin-top: 30px;
-  padding-bottom: 20px;
-}
-
 .person-image {
   display: none;
   width: 100px;
@@ -77,6 +69,18 @@ p {
 
 .diverse-reading-score {
   padding-top: 10px;
+}
+
+.loaded-results {
+  display: none;
+}
+
+.loading-icon {
+  width: 75px;
+}
+
+#results-loading {
+  height: 296px;
 }
 
 #main-text {

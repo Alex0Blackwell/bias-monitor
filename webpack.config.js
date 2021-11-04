@@ -11,9 +11,6 @@ if (process.env.TESTBUILD) {
 module.exports = {
   entry: {
     main: entry,
-    background: './src/background.js',
-    scrape: './src/scrape.js',
-    not_news_event: './src/not_news_event.js',
   },
   output: {
       path: output_path,
