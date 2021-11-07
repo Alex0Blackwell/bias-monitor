@@ -121,4 +121,12 @@ by [The Bipartisan Press](https://www.thebipartisanpress.com/)
 and for providing an API endpoint for our Chrome extension
 project *Bias Monitor*.  
 
+#### Enjoying This Project?
+<a href="https://www.buymeacoffee.com/alex.software">
+    <img src="https://user-images.githubusercontent.com/31634087/140656465-70c4af0d-1a29-45c3-9d58-3debaae56636.png" width="350px">
+</a>  
+
+[Buy Me a Coffee!](https://www.buymeacoffee.com/alex.software)
+
+
 Licensed under the [MIT License](LICENSE).
