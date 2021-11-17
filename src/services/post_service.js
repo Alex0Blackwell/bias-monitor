@@ -82,7 +82,7 @@ export default class PostService {
     const abs_result_float = Math.abs(result_float);
 
     const squash = 5.7;
-    const vertical_shift = 5;
+    const vertical_shift = 3;
     const transformed_val = squash*Math.pow(abs_result_float, 1/2) + vertical_shift;
 
     return is_negative ? -1*transformed_val : transformed_val; 
