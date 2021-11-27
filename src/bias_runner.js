@@ -10,7 +10,36 @@ export default class BiasRunner {
     static async run(active_tab) {
         BiasRunner.page_content = active_tab.title;
         BiasRunner.website_url = active_tab.url;
+        await this.set_page_content();
         await this.update_and_display();
+    }
+
+    static async set_page_content() {
+        let page_content = false;
+
+        const max_retries = 11;
+        for(let i = 0; i < max_retries && !page_content; ++i) {
+            const exponential_backoff = Math.pow(2, i);
+            await this.sleep(exponential_backoff)
+            page_content = await this._get_content_from_local_storage();
+        }
+
+        BiasRunner.page_content += page_content;
+    }
+
+    static _get_content_from_local_storage() {
+        return new Promise(function(resolve, reject) {
+            try {
+                chrome.storage.local.get({page_content: {}}, function(result) {
+                    if(BiasRunner.website_url in result.page_content)
+                        resolve(result.page_content[BiasRunner.website_url]);
+                    else
+                        resolve(false);
+                });
+            } catch (error) {
+                resolve(false);
+            }
+        });
     }
 
     static async update_and_display() {
@@ -73,5 +102,11 @@ export default class BiasRunner {
                 resolve();
             });
         });
+    }
+
+    static sleep(milliseconds) {
+        return new Promise(
+            resolve => setTimeout(resolve, milliseconds)
+        );
     }
 }
