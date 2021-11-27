@@ -68,10 +68,7 @@ export default class PostService {
 
 
   /**
-   * The responses we get back are mostly in the [-2, 2]
-   * range because we don't send over large requests
-   * with lots of text data. This applies a cusp
-   * transformation to amplify some of the small numbers.
+   * A cusp transformation amplifys some of the small numbers.
    * 
    * @param {*} result 
    * @returns a float after a cusp transformation
@@ -82,8 +79,7 @@ export default class PostService {
     const abs_result_float = Math.abs(result_float);
 
     const squash = 5.7;
-    const vertical_shift = 3;
-    const transformed_val = squash*Math.pow(abs_result_float, 1/2) + vertical_shift;
+    const transformed_val = squash*Math.pow(abs_result_float, 1/2);
 
     return is_negative ? -1*transformed_val : transformed_val; 
   }

@@ -11,6 +11,8 @@ if (process.env.TESTBUILD) {
 module.exports = {
   entry: {
     main: entry,
+    background: './src/background.js',
+    content: './src/content.js',
   },
   output: {
       path: output_path,
